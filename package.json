@@ -9,7 +9,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -20,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/matthewkol186/reembrace/issues"
   },
-  "homepage": "https://github.com/matthewkol186/reembrace#readme"
+  "homepage": "https://github.com/matthewkol186/reembrace#readme",
+  "engines": {
+    "node": "8.x"
+  }
 }
