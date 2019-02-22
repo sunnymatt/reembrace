@@ -1,0 +1,24 @@
+{
+  "name": "reembrace",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.16.4",
+    "twilio": "^3.28.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matthewkol186/reembrace.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/matthewkol186/reembrace/issues"
+  },
+  "homepage": "https://github.com/matthewkol186/reembrace#readme"
+}
