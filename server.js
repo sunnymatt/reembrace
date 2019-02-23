@@ -19,7 +19,13 @@ const MessagingResponse = require('twilio').twiml.MessagingResponse;
 const port = process.env.PORT || 1337;
 
 const app = express();
-app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.urlencoded({extended: false}));
+
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 var mongoose = require('mongoose');
 var SurveyQuestion = require('./models/SurveyQuestions');
@@ -36,6 +42,24 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/reembrace', fun
       console.log("Should have initialized...")
     }
   })
+
+  app.get('/api/questions/start', (req, res) => {
+    SurveyQuestion.findOne({option: ''}, function(err, obj) { // we start off with the default question
+      res.send(obj);
+    });
+  });
+
+  app.get('/api/questions/:id/children', (req, res) => {
+    SurveyQuestion.find({parent: req.params.id}, function(err, objs) { // we start off with the default question
+      res.send(objs);
+    });
+  });
+
+  app.get('/api/questions/:id', (req, res) => {
+    SurveyQuestion.findOne({id: req.params.id}, function(err, obj) { // we start off with the default question
+      res.send(obj);
+    });
+  });
 
   app.post('/sms', (req, res) => {
     const twiml = new MessagingResponse();
