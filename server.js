@@ -39,6 +39,35 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/reembrace', fun
 
   app.post('/sms', (req, res) => {
     const twiml = new MessagingResponse();
+    var message = req.body.Body.toLowerCase().trim();
+
+    function emptyProperties(user) {
+      var props = []
+      for(var infoProperty of ["full_name", "age", "gender", "street_address", "city_of_residence", "ZIP_code"]){
+        if(!user[infoProperty]) {
+          props.push(infoProperty);
+        }
+      }
+      return props;
+    }
+
+    function userInfoSummary(user) {
+      var summ = "";
+      // assumes all the properties are filled in with correct values
+      for(var infoProperty of ["full_name", "age", "gender", "street_address", "city_of_residence", "ZIP_code"]){
+          summ += "\n" + infoProperty.split("_").join(" ") + ": " + user[infoProperty];
+      }
+      return summ;
+    }
+
+    function updateUser(user, message) {
+      fields = message.split(", ");
+      fields[0] = fields[0].toLowerCase().trim().split(" ").join("_");
+      console.log(fields[0])
+      if(["full_name", "age", "gender", "street_address", "city_of_residence", "ZIP_code"].includes(fields[0])) {
+        user[fields[0]] = fields[1];
+      }
+    }
 
     User.countDocuments({cell: req.body.From}, function(err, count) {
       if(count === 0) { // the person texting in is a new user
@@ -60,7 +89,7 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/reembrace', fun
         });
       }
       else { // this user is known to us
-        if(req.body.Body.toLowerCase().trim() == "done") { // serves as a "restart"
+        if(message == "done") { // serves as a "restart"
           User.updateOne({cell: req.body.From}, {question: null}, function(err){ // reset to the start of the question flow
             var textResponse = "Got it - you're done for now. Text us again if you need anything!";
             twiml.message(textResponse);
@@ -71,30 +100,111 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/reembrace', fun
           User.findOne({cell: req.body.From}, function(err, user){
             if(user.question) { // if the user is responding to a question we already asked
               SurveyQuestion.findOne({_id: user.question}, function(err, q){
-                SurveyQuestion.find({parent: user.question}, function(err, options) {
-                  idx = -1 
-                  // find which choice the user chose
-                  for(var i = 0; i < options.length; i++) {
-                    if(options[i].option.toLowerCase() === req.body.Body.toLowerCase()) {
-                      idx = i;
-                      break;
-                    }
-                  }
-                  if(idx === -1) { // response didn't match one of the choices
-                    var textResponse = "I'm sorry, I didn't understand that. Could you respond with one of the choices listed above? To reset or stop, reply with \"DONE.\"";
-                    twiml.message(textResponse);
-                    res.send(twiml.toString());
-                  } else { // based on the user's choice, send a new question and update their question tracker field
-                    SurveyQuestion.find({parent: options[idx]._id}, function(err, nextOptions){
-                      User.updateOne({cell: req.body.From}, {question: options[idx]._id}, function(err) {
-                        var textResponse = options[idx].question;
-                        textResponse += (nextOptions.length > 0 ? "\n\nChoices:\n\n" + nextOptions.map(x => x.option).reduce((accumulator, curVal) => accumulator + "\n" + curVal) : "");
+                if(q.apply) { 
+                  if(message === "apply") { // user wants to apply to program
+                    User.updateOne({cell: req.body.From}, {inApplication: true}, function(err){
+                      emptyProps = emptyProperties(user);
+                      if(emptyProps.length === 0) { // user already has all properties filled in
+                        var textResponse = "Great! Here's the information we already have on file for you.\n";
+                        textResponse += userInfoSummary(user);
+                        textResponse += "\n\nIs all of this information correct?";
                         twiml.message(textResponse);
-                        res.send(twiml.toString())
-                      });
+                        res.send(twiml.toString());
+                      } else {
+                        var textResponse = "What is your " + emptyProps[0].split("_").join(" ") + "?";
+                        twiml.message(textResponse);
+                        res.send(twiml.toString());
+                      }
                     });
+                  } else if (user.inApplication) {
+                    emptyProps = emptyProperties(user);
+                    if(emptyProps.length > 0) { // user just responded to a question about their information
+                      console.log(emptyProps);
+                      console.log(req.body.Body);
+                      user[emptyProps[0]] = req.body.Body; // set the property
+                      user.save(function(e, u){
+                        if(emptyProps.length > 1) {
+                          var textResponse = "What is your " + emptyProps[1].split("_").join(" ") + "?";
+                          twiml.message(textResponse);
+                          res.send(twiml.toString());
+                        } else { // done!!!! woohoo
+                          user.applications.push(q._id);
+                          user.inApplication = false;
+                          user.question = null;
+                          user.save(function(e, u){
+                            console.log("User with name " + user.full_name + " applied to " + q.option);
+                            var textResponse = "Great! That's all we need. We've submitted your application. You'll hear back as soon as we have an update."
+                            textResponse += "\n\nHere's a summary of the information we submitted in your application: " + userInfoSummary(u);
+                            twiml.message(textResponse);
+                            res.send(twiml.toString())
+                          });
+                        }
+                      });
+                    }
+                    else if(user.updatingInfo) { // assume response is corrected information
+                      console.log(req.body.Body);
+                      updateUser(user, req.body.Body);
+                      console.log(user);
+                      user.updatingInfo = false;
+                      user.save(function(e, u){
+                        var textResponse = "Thanks for the update! Here's the information we now have on file for you.\n";
+                        textResponse += userInfoSummary(u);
+                        textResponse += "\n\nIs all of this information correct?";
+                        twiml.message(textResponse);
+                        res.send(twiml.toString());
+                      });
+                    }
+                    else {
+                      if(message === "yes") { // the information we have on file is correct!
+                        user.applications.push(q._id);
+                        user.inApplication = false;
+                        user.question = null;
+                        user.save(function(e, u){
+                          console.log("User with name " + user.full_name + " applied to " + q.option);
+                          var textResponse = "Great! We've submitted your application. You'll hear back as soon as we have an update."
+                          twiml.message(textResponse);
+                          res.send(twiml.toString())
+                        });
+                      } else {
+                        user.updatingInfo = true;
+                        user.save(function(e, u){
+                          var textResponse = "Let's get your info up to date. Please enter the field and corrected value. For example: \"full name, John Smith\"."
+                          twiml.message(textResponse);
+                          res.send(twiml.toString())
+                        });
+                      }
+                    }
+                    
                   }
-                });
+                } else {
+                  SurveyQuestion.find({parent: user.question}, function(err, options) {
+                    idx = -1 
+                    // find which choice the user chose
+                    for(var i = 0; i < options.length; i++) {
+                      if(options[i].option.toLowerCase() === req.body.Body.toLowerCase()) {
+                        idx = i;
+                        break;
+                      }
+                    }
+                    if(idx === -1) { // response didn't match one of the choices
+                      var textResponse = "I'm sorry, I didn't understand that. Could you respond with one of the choices listed above? To reset or stop, reply with \"DONE.\"";
+                      twiml.message(textResponse);
+                      res.send(twiml.toString());
+                    } else { // based on the user's choice, send a new question and update their question tracker field
+                      SurveyQuestion.find({parent: options[idx]._id}, function(err, nextOptions){
+                        User.updateOne({cell: req.body.From}, {question: options[idx]._id}, function(err) {
+                          var textResponse = options[idx].question;
+                          textResponse += (nextOptions.length > 0 ? "\n\nChoices:\n\n" + nextOptions.map(x => x.option).reduce((accumulator, curVal) => accumulator + "\n" + curVal) : "");
+                          if(options[idx].apply && !user.applications.some((app) => app.equals(options[idx]._id))) {
+                            textResponse += "\n\nGood news - you can apply for this program now via text. Send \"apply\" if you'd like to apply now. Otherwise, send \"done\" if you're satisfied."
+                          }
+                          twiml.message(textResponse);
+                          res.send(twiml.toString())
+                        });
+                      });
+                    }
+                  });
+                }
               });
             } else { // the user just initiated a text 
               SurveyQuestion.findOne({option: ''}, function(err, obj) {

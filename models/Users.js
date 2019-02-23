@@ -5,7 +5,16 @@ var Schema = mongoose.Schema;
 // create a schema
 var userSchema = new Schema({
   cell: { type: String, required: true, unique: true },
-  question: { type: mongoose.Schema.Types.ObjectId, ref: 'SurveyQuestion' }
+  full_name: String,
+  age: Number,
+  gender: String,
+  street_address: String,
+  city_of_residence: String,
+  ZIP_code: String,
+  inApplication: {type: Boolean, default: false},
+  updatingInfo: {type: Boolean, default: false},
+  question: { type: mongoose.Schema.Types.ObjectId, ref: 'SurveyQuestion' },
+  applications: [{ type: mongoose.Schema.Types.ObjectId, ref: 'SurveyQuestion' }]
 });
 
 // the schema is useless so far
