@@ -56,8 +56,17 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/reembrace', fun
   });
 
   app.get('/api/questions/:id', (req, res) => {
-    SurveyQuestion.findOne({id: req.params.id}, function(err, obj) { // we start off with the default question
+    SurveyQuestion.findById(req.params.id, function(err, obj) { // we start off with the default question
       res.send(obj);
+    });
+  });
+
+
+  app.post('/api/questions/:id', (req, res) => {
+    SurveyQuestion.findByIdAndUpdate(req.params.id, req.body, function(err, q) { // successfully updated
+      console.log(req.body);
+      console.log("Successfully updated!");
+      res.end();
     });
   });
 

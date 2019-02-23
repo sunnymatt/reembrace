@@ -10,10 +10,19 @@ class App extends Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
         </header>
-        <p>
-          Welcome to Santa Clara County's Reembrace tool!
-        </p>
-        <Question />
+        <div className="container pt-4">
+          <h1>
+            Santa Clara County Reembrace Tool
+          </h1>
+          <p>
+            This tool is intended for use by authorized nonprofit, agency, and Santa Clara County officials to improve access to social services for returning citizens.
+          </p>
+          <hr/>
+          <h2>
+            Content
+          </h2>
+          <Question />
+        </div>
       </div>
     );
   }
