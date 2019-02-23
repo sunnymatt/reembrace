@@ -9,6 +9,7 @@
     "express": "^4.16.4",
     "mongoose": "^5.4.14",
     "nodemon": "^1.18.10",
+    "path": "^0.12.7",
     "twilio": "^3.28.1"
   },
   "devDependencies": {},
@@ -16,7 +17,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
     "start-watch": "nodemon server.js",
-    "dev": "concurrently \"npm run start-watch\" \"cd client && BROWSER=none npm start\""
+    "dev": "concurrently \"npm run start-watch\" \"cd client && BROWSER=none npm start\"",
+    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
   },
   "repository": {
     "type": "git",

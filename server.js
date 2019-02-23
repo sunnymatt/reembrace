@@ -1,4 +1,5 @@
 const fs = require('fs')
+const path = require("path")
 let keys;
 
 try {
@@ -19,6 +20,7 @@ const MessagingResponse = require('twilio').twiml.MessagingResponse;
 const port = process.env.PORT || 1337;
 
 const app = express();
+// app.use middleware
 app.use(bodyParser.urlencoded({extended: false}));
 
 app.use((req, res, next) => {
@@ -26,6 +28,8 @@ app.use((req, res, next) => {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
+
+app.use(express.static(path.join(__dirname, "client", "build")))
 
 var mongoose = require('mongoose');
 var SurveyQuestion = require('./models/SurveyQuestions');
@@ -258,6 +262,10 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/reembrace', fun
     
   
     
+  });
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
   });
   
   http.createServer(app).listen(port, () => {
