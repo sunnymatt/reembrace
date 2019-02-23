@@ -5,3 +5,9 @@ We envision a better version of wraparound services that we term an "reembrace" 
 
 ## Project requirements
 This project requires `npm`. Upon downloading, please install the requirements by running `npm install` in the root folder.
+
+## Server-side
+The server-side app runs on Node.js with a MongoDB database. Run "node server.js" in the root folder to get the server up and running.
+
+## Front-end
+The front-end admin dashboard is in ReactJS. `cd` to the client folder and run `yarn start` to initialize the client. If in WSL, run `BROWSER=none yarn start` instead.
