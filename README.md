@@ -8,7 +8,6 @@ You can view full-length videos of our demos of various aspects of our app at th
 
 ### Texting service demo
 [Full video link](https://drive.google.com/open?id=1elOSXvyYF6eW1tkyHIsMqr8El5zjdFGm)  
-![Texting service demo GIF](https://i.imgur.com/I2waMiy.gif)
 <img src="https://i.imgur.com/I2waMiy.gif" data-canonical-src="https://i.imgur.com/I2waMiy.gif" alt="Texting service demo GIF" height="400" height="auto" />
 
 ### Admin dashboard demo
