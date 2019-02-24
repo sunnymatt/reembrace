@@ -1,4 +1,6 @@
 # reembrace
+[![Waffle.io]](https://badge.waffle.io/matthewkol186/reembrace.svg?columns=done)](https://waffle.io/matthewkol186/reembrace)
+
 <img src="https://i.imgur.com/53rdMWW.png" data-canonical-src="https://i.imgur.com/53rdMWW.png" alt="reembrace logo" height="75" width="auto" />  
 
 _Using technology for a more compassionate approach to wrap-around services for returning citizens._
