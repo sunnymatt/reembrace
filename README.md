@@ -7,11 +7,13 @@ We envision a better version of wraparound services that we term an "reembrace" 
 You can view full-length videos of our demos of various aspects of our app at the following links. We've also provided shorter GIF versions below.
 
 [Texting service demo](https://drive.google.com/open?id=1elOSXvyYF6eW1tkyHIsMqr8El5zjdFGm)
-![Texting service demo GIF](https://i.imgur.com/gstYGQv.gifv)
+![Texting service demo GIF](https://i.imgur.com/gstYGQv.gif)
 
 [Admin dashboard demo](https://drive.google.com/open?id=19cOxLMBC9qxG0ZaOuHsJzNcQckTyBmKL)
+![Admin dashboard demo GIF](https://i.imgur.com/Xm9eIhz.gif)
 
 [Admin dashboard + texting service demo](https://drive.google.com/open?id=1bVG1KUow_Jj-e8q2gajalak0KkCUNhJ1)
+![Admin dashboard + texting service demo GIF](https://i.imgur.com/VcAlLch.gif)
 
 ## Project requirements
 This project requires `npm`. Upon downloading, please install the requirements by running `npm install` in the root folder. You should also `cd` into the `client` folder and run `npm install` there as well.
