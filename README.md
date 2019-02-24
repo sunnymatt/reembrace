@@ -1,6 +1,8 @@
 # reembrace
 <img src="https://i.imgur.com/53rdMWW.png" data-canonical-src="https://i.imgur.com/53rdMWW.png" alt="reembrace logo" height="75" width="auto" />  
 
+_Using technology for a more compassionate approach to wrap-around services for returning citizens._
+
 **Team members**: Matthew Sun, Marissa Gerchick, Sam Feineh, Ethan Oro, Emily Lemmerman   
 
 This is the open-source repository for our team's submission to the 2019 SIG/SIEPR Policy Hackathon. "reembrace" is the codename for our policy proposal, which is a play on words on the term "reentry" and the term "wraparound services." Wrap-around services have actaully been shown to be _harmful_ in that they can lead to increased recidivism rates ([Doleac 2019](http://jenniferdoleac.com/wp-content/uploads/2019/01/JPAM_Point_Doleac_preprint.pdf)). One hypothesis for why wraparound services impact people released from prison in a negative manner is that they overwhelm and frustrate subjects with constant check-ins and mandatory appointments, creating obligations and furthering resentment toward the system.
