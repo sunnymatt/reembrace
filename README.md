@@ -15,7 +15,7 @@ You can view full-length videos of our demos of various aspects of our app at th
 ![Admin dashboard demo GIF](https://i.imgur.com/Xm9eIhz.gif)
 
 ### Admin dashboard + texting service demo
-[Full video link](https://drive.google.com/open?id=1bVG1KUow_Jj-e8q2gajalak0KkCUNhJ1) 
+[Full video link](https://drive.google.com/open?id=1bVG1KUow_Jj-e8q2gajalak0KkCUNhJ1)  
 ![Admin dashboard + texting service demo GIF](https://i.imgur.com/VcAlLch.gif)
 
 ## Project requirements
