@@ -7,18 +7,22 @@ We envision a better version of wraparound services that we term an "reembrace" 
 You can view full-length videos of our demos of various aspects of our app at the following links. We've also provided shorter GIF versions below.
 
 ### Texting service demo
+---
 [Full video link](https://drive.google.com/open?id=1elOSXvyYF6eW1tkyHIsMqr8El5zjdFGm)  
 <img src="https://i.imgur.com/I2waMiy.gif" data-canonical-src="https://i.imgur.com/I2waMiy.gif" alt="Texting service demo GIF" height="400" height="auto" />
 
 ### Admin dashboard demo
+---
 [Full video link](https://drive.google.com/open?id=19cOxLMBC9qxG0ZaOuHsJzNcQckTyBmKL)  
 ![Admin dashboard demo GIF](https://i.imgur.com/Xm9eIhz.gif)
 
 ### Admin dashboard + texting service demo
+---
 [Full video link](https://drive.google.com/open?id=1bVG1KUow_Jj-e8q2gajalak0KkCUNhJ1)  
 ![Admin dashboard + texting service demo GIF](https://i.imgur.com/VcAlLch.gif)
 
 ## Project requirements
+---
 This project requires `npm`. Upon downloading, please install the requirements by running `npm install` in the root folder. You should also `cd` into the `client` folder and run `npm install` there as well.
 
 This project uses the MERN stack: Node.js + Express on the backend with a MongoDB database and frontend in ReactJS. Because it is an SMS based app, we use the Twilio API to manage receiving/sending texts. To run it on your own, you'll need to create an account on Twilio, create a number, and set the incoming SMS webhook to your local server.
