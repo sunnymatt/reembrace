@@ -18,7 +18,7 @@
     "start": "node server.js",
     "start-watch": "nodemon server.js",
     "dev": "concurrently \"npm run start-watch\" \"cd client && BROWSER=none npm start\"",
-    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build",
+    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
   },
   "repository": {
     "type": "git",
@@ -32,15 +32,5 @@
   "homepage": "https://github.com/matthewkol186/reembrace#readme",
   "engines": {
     "node": "8.x"
-  },
-  "eslintConfig": {
-    "env": {
-      "browser": true,
-      "node": true,
-      "es6": true
-    },
-    "parserOptions": {
-      "ecmaVersion": 2017
-    }
   }
 }
