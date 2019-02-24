@@ -3,6 +3,8 @@ This is the open-source repository for our team's submission to the 2019 SIG/SIE
 
 We envision a better version of wraparound services that we term an "reembrace" into society. Rather than forcing people who are reentering society into a suite of programs they may not want or need, we create an accessible text service that centers around the released person and provides them with choices to pursue whatever resources they desire, at the tips of their fingerips.
 
+View our (fictitious) policy memo [here](https://drive.google.com/open?id=1Y0IeEWRwtCkW1DdODLODF7Pjk0lrnpUi) and our slides [here](https://drive.google.com/open?id=1ZunFIBapL15QROHFX0T5AEGIxlU0lNQRenkhj-2rtA0)!
+
 ## Demo
 You can view full-length videos of our demos of various aspects of our app at the following links. We've also provided shorter GIF versions below.
 
