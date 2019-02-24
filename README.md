@@ -3,11 +3,23 @@ This is the open-source repository for our team's submission to the 2019 SIG/SIE
 
 We envision a better version of wraparound services that we term an "reembrace" into society. Rather than forcing people who are reentering society into a suite of programs they may not want or need, we create an accessible text service that centers around the released person and provides them with choices to pursue whatever resources they desire, at the tips of their fingerips.
 
+## Demo
+You can view full-length videos of our demos of various aspects of our app at the following links. We've also provided shorter GIF versions below.
+
+[Texting service demo](https://drive.google.com/open?id=1elOSXvyYF6eW1tkyHIsMqr8El5zjdFGm)
+![Texting service demo GIF](https://i.imgur.com/gstYGQv.gifv)
+
+[Admin dashboard demo](https://drive.google.com/open?id=19cOxLMBC9qxG0ZaOuHsJzNcQckTyBmKL)
+
+[Admin dashboard + texting service demo](https://drive.google.com/open?id=1bVG1KUow_Jj-e8q2gajalak0KkCUNhJ1)
+
 ## Project requirements
-This project requires `npm`. Upon downloading, please install the requirements by running `npm install` in the root folder.
+This project requires `npm`. Upon downloading, please install the requirements by running `npm install` in the root folder. You should also `cd` into the `client` folder and run `npm install` there as well.
+
+This project uses the MERN stack: Node.js + Express on the backend with a MongoDB database and frontend in ReactJS. Because it is an SMS based app, we use the Twilio API to manage receiving/sending texts. To run it on your own, you'll need to create an account on Twilio, create a number, and set the incoming SMS webhook to your local server.
 
 ## Server-side
-The server-side app runs on Node.js with a MongoDB database. Run "node server.js" in the root folder to get the server up and running.
+The server-side app runs on Node.js with a MongoDB database. Run `node server.js` in the root folder to get the server up and running.
 
 ## Front-end
-The front-end admin dashboard is in ReactJS. `cd` to the client folder and run `yarn start` to initialize the client. If in WSL, run `BROWSER=none yarn start` instead.
+The front-end admin dashboard is in ReactJS. `cd` to the `client` folder and run `npm start` to initialize the client. If in WSL, run `BROWSER=none yarn start` instead (on my computer, adding this suffix removed an error with opening Google chrome).
