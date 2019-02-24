@@ -1,6 +1,8 @@
 # reembrace 
+[![Known Vulnerabilities](https://snyk.io/test/github/matthewkol186/reembrace/badge.svg)](https://snyk.io/test/github/matthewkol186/reembrace)
 [![Waffle.io](https://badge.waffle.io/matthewkol186/reembrace.svg?columns=done)](https://waffle.io/matthewkol186/reembrace)
 [![Maintainability](https://api.codeclimate.com/v1/badges/22cb96ecaa1206eddbfa/maintainability)](https://codeclimate.com/github/matthewkol186/reembrace/maintainability)
+
 
 <img src="https://i.imgur.com/53rdMWW.png" data-canonical-src="https://i.imgur.com/53rdMWW.png" alt="reembrace logo" height="75" width="auto" />  
 
