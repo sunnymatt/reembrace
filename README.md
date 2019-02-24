@@ -7,7 +7,7 @@ We envision a better version of wraparound services that we term an "reembrace" 
 You can view full-length videos of our demos of various aspects of our app at the following links. We've also provided shorter GIF versions below.
 
 [Texting service demo](https://drive.google.com/open?id=1elOSXvyYF6eW1tkyHIsMqr8El5zjdFGm)
-![Texting service demo GIF](https://i.imgur.com/gstYGQv.gif)
+![Texting service demo GIF](https://i.imgur.com/I2waMiy.gif)
 
 [Admin dashboard demo](https://drive.google.com/open?id=19cOxLMBC9qxG0ZaOuHsJzNcQckTyBmKL)
 ![Admin dashboard demo GIF](https://i.imgur.com/Xm9eIhz.gif)
