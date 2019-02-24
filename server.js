@@ -1,17 +1,5 @@
 const fs = require('fs')
 const path = require("path")
-let keys;
-
-try {
-    if (fs.existsSync('./playground/twilio/keys.js')) {
-        keys = require('./playground/twilio/keys.js') // create a keys.js in same folder, populate with keys accordingly
-    }
-} catch(err) {
-    keys = {
-        accountSid: processs.env.twilioAccountSid,
-        authToken: process.env.twilioAuthToken
-    }
-}
 
 const http = require('http');
 const express = require('express');
