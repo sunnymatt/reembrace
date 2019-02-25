@@ -38,10 +38,10 @@ You can view full-length videos of our demos of various aspects of our app at th
 ---
 This project requires `npm`. Upon downloading, please install the requirements by running `npm install` in the root folder. You should also `cd` into the `client` folder and run `npm install` there as well.
 
-This project uses the MERN stack: Node.js + Express on the backend with a MongoDB database and frontend in ReactJS. Because it is an SMS based app, we use the Twilio API to manage receiving/sending texts. To run it on your own, you'll need to create an account on Twilio, create a number, and set the incoming SMS webhook to your local server.
+This project uses the MERN stack: Node.js + Express on the backend with a MongoDB database and frontend in ReactJS. Because it is an SMS based app, we use the Twilio API to manage receiving/sending texts. To run it on your own, you'll need to create an account on Twilio, create a number, and set the incoming SMS webhook to your local server. For local testing, we recommend using [ngrok](https://ngrok.com/). 
 
 ## Server-side
-The server-side app runs on Node.js with a MongoDB database. Run `node server.js` in the root folder to get the server up and running.
+The server-side app runs on Node.js with a MongoDB database. Run `mongod` to get your MongoDB database up and running. Then, run `node server.js` in the root folder to get the server up and running.
 
 ## Front-end
 The front-end admin dashboard is in ReactJS. `cd` to the `client` folder and run `npm start` to initialize the client. If in WSL, run `BROWSER=none yarn start` instead (on my computer, adding this suffix removed an error with opening Google chrome).
