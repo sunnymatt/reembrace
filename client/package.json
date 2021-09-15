@@ -8,8 +8,8 @@
     "qs": "^6.6.0",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
-    "react-scripts": "2.1.5",
-    "snyk": "^1.161.1"
+    "react-scripts": "4.0.0",
+    "snyk": "^1.465.0"
   },
   "scripts": {
     "start": "react-scripts start",
